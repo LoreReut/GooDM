@@ -84,6 +84,15 @@ public class Operations {
         gui.getNameText().setText(charToScreen.getName());
         gui.getHealthRadioButton().setSelected(charToScreen.simplifiedHealth);
         gui.getRollRadioButton().setSelected(charToScreen.rollInitiative);
+        if( gui.getRollRadioButton().isSelected() ){
+            gui.getInitiativeBonusLabel().setVisible(true);
+            gui.getInitiativeBonusText().setVisible(true);
+            gui.getForceRollButton().setEnabled(true);
+        } else {
+            gui.getInitiativeBonusLabel().setVisible(false);
+            gui.getInitiativeBonusText().setVisible(false);
+            gui.getForceRollButton().setEnabled(false);
+        }
         gui.getPhysicalText().setText(Integer.toString(charToScreen.getPhysical()));
         gui.getStunText().setText(Integer.toString(charToScreen.getStun()));
         gui.getInitiativeText().setText(Integer.toString(charToScreen.getInitiativeDie()));
@@ -112,6 +121,14 @@ public class Operations {
             return 0;
         }
         else { return Integer.parseInt(textField.getText()); }
+    }
+    
+    void nextTurn(){
+        // TODO: Add Next Turn functionality
+        // Initiative is more complex than it sounds. It should be rolled
+        // ONLY when it's the end of all turns and everyone is rolling, that way
+        // the user can modify the initiative dice without modifying the actual
+        // initiative. TODO: Next Turn Listener
     }
     
     public void updateJList(){

@@ -156,17 +156,16 @@ public class GooDM {
         gui.getInitiativeBonusText().addFocusListener(selectOnFocus);
         gui.getInitiativeText().addFocusListener(selectOnFocus);
         
-        // Initiative is more complex than it sounds. It should be rolled
-        // ONLY when it's the end of all turns and everyone is rolling, that way
-        // the user can modify the initiative dice without modifying the actual
-        // initiative. TODO: Next Turn Listener
-        
-        // TODO: The 'Skip to this char' should be gray when the character written
-        // in the nameText doesn't exist. Its main function, though, is to set
-        // the turn to the currenct character.
-        
-        // TODO: Listener for the jList I think it's called. When you click on
-        // an element of the list, the Character in the List with the same index
-        // as the clicked element is represented on the Texts above.
+        // TODO: Add an 'Add/Substract Initiative' button which will roll the dice
+        // you wrote and add it to the initiative of the selected character,
+        // but will not modify its original initiative die. This will open
+        // a new window with 2 text boxes, an add and a substract button. The first being
+        // the initiative bonus and the second being the initiative die. If you
+        // leave the second blank, it will add/substract a solid number, and if
+        // you leave the second with a number, it will add/substract the number +
+        // the die. For example, if you put 2 in the first textbox and 6 in the second,
+        // then click substract, it will substract 2+6d6 from the initiative of the
+        // selected character.
+        // TODO: Add +5 and -5 buttons for the initiative
     }
 }

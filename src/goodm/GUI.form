@@ -35,11 +35,16 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="initiativeLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="initiativeText" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="initiativeBonusText" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="initiativeBonusLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="initiativeBonusText" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="initiativeText" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="add5IniButton" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="substract5IniButton" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -98,13 +103,24 @@
                   <Component id="stunText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="healthRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="initiativeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="initiativeText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="initiativeBonusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="initiativeBonusText" alignment="3" max="-2" attributes="0"/>
-                  <Component id="rollRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="initiativeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="initiativeBonusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="initiativeBonusText" alignment="3" max="-2" attributes="0"/>
+                          <Component id="rollRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="add5IniButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="initiativeText" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="6" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="substract5IniButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="updateButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -201,13 +217,7 @@
         <Component class="javax.swing.JList" name="characterJList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-                <StringItem index="4" value="Item 5"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[215, 80]"/>
@@ -232,13 +242,7 @@
         <Component class="javax.swing.JList" name="diceJList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-                <StringItem index="4" value="Item 5"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -268,6 +272,13 @@
         <Property name="text" type="java.lang.String" value="Sort List"/>
         <Property name="actionCommand" type="java.lang.String" value="sortListButton"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="add5IniButton">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="substract5IniButton">
     </Component>
   </SubComponents>
 </Form>
