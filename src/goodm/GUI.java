@@ -32,10 +32,6 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         stunLabel.setVisible(false);
         stunText.setVisible(false);
-        // TODO: I just swapped initiativeText and initiativeBonusText because
-        // that's how it's written in SR. Besides, it makes more sense that the 
-        // current initiative is shown in the initiativeBonusText, since modifying
-        // the bonus is literally the same as modifying the initiative itself.
     }
 
     /**
@@ -52,12 +48,12 @@ public class GUI extends javax.swing.JFrame {
         initiativeLabel = new javax.swing.JLabel();
         nameText = new javax.swing.JTextField();
         physicalText = new javax.swing.JTextField();
-        initiativeText = new javax.swing.JTextField();
+        initiativeBonusText = new javax.swing.JTextField();
         stunLabel = new javax.swing.JLabel();
         stunText = new javax.swing.JTextField();
         healthRadioButton = new javax.swing.JRadioButton();
         initiativeBonusLabel = new javax.swing.JLabel();
-        initiativeBonusText = new javax.swing.JTextField();
+        initiativeText = new javax.swing.JTextField();
         rollRadioButton = new javax.swing.JRadioButton();
         updateButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -81,7 +77,7 @@ public class GUI extends javax.swing.JFrame {
 
         physicalText.setText("0");
 
-        initiativeText.setText("0");
+        initiativeBonusText.setText("0");
 
         stunLabel.setText("Stun");
 
@@ -93,7 +89,7 @@ public class GUI extends javax.swing.JFrame {
 
         initiativeBonusLabel.setText("d6 +");
 
-        initiativeBonusText.setText("0");
+        initiativeText.setText("0");
 
         rollRadioButton.setSelected(true);
         rollRadioButton.setText("Roll");
@@ -134,11 +130,11 @@ public class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(initiativeLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(initiativeBonusText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(initiativeText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(initiativeBonusLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(initiativeText, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(initiativeBonusText, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(add5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,13 +185,14 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(initiativeLabel)
-                            .addComponent(initiativeBonusLabel)
-                            .addComponent(initiativeBonusText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rollRadioButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(add5IniButton)
-                            .addComponent(initiativeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(initiativeBonusText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(initiativeLabel)
+                                .addComponent(initiativeBonusLabel)
+                                .addComponent(initiativeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rollRadioButton)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,12 +248,12 @@ public class GUI extends javax.swing.JFrame {
         this.initiativeBonusLabel = initiativeBonusLabel;
     }
 
-    public JTextField getInitiativeBonusText() {
-        return initiativeBonusText;
+    public JTextField getInitiativeText() {
+        return initiativeText;
     }
 
-    public void setInitiativeBonusText(JTextField initiativeBonusText) {
-        this.initiativeBonusText = initiativeBonusText;
+    public void setInitiativeText(JTextField initiativeText) {
+        this.initiativeText = initiativeText;
     }
 
     public JLabel getInitiativeLabel() {
@@ -267,12 +264,12 @@ public class GUI extends javax.swing.JFrame {
         this.initiativeLabel = initiativeLabel;
     }
 
-    public JTextField getInitiativeText() {
-        return initiativeText;
+    public JTextField getInitiativeBonusText() {
+        return initiativeBonusText;
     }
 
-    public void setInitiativeText(JTextField initiativeText) {
-        this.initiativeText = initiativeText;
+    public void setInitiativeBonusText(JTextField initiativeBonusText) {
+        this.initiativeBonusText = initiativeBonusText;
     }
 
     public JList<String> getjList1() {
@@ -413,14 +410,6 @@ public class GUI extends javax.swing.JFrame {
         this.forceRollButton = forceRollButton;
     }
 
-    public JButton getjButton1() {
-        return nextTurnButton;
-    }
-
-    public void setjButton1(JButton jButton1) {
-        this.nextTurnButton = jButton1;
-    }
-
     public JScrollPane getjScrollPane2() {
         return jScrollPane2;
     }
@@ -435,5 +424,21 @@ public class GUI extends javax.swing.JFrame {
 
     public void setMakeHisTurnButton(JButton makeHisTurnButton) {
         this.makeHisTurnButton = makeHisTurnButton;
+    }
+    
+    JButton getAdd5IniButton() {
+        return add5IniButton;
+    }
+    
+    void setAdd5IniButton(JButton add5IniButton){
+        this.add5IniButton = add5IniButton;
+    }
+    
+    JButton getSubstract5IniButton() {
+        return substract5IniButton;
+    }
+    
+    void setSubstract5IniButton(JButton substract5IniButton){
+        this.substract5IniButton = substract5IniButton;
     }
 }

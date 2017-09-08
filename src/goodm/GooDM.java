@@ -58,11 +58,11 @@ public class GooDM {
             public void actionPerformed(ActionEvent e){
                 if( gui.getRollRadioButton().isSelected() ){
                     gui.getInitiativeBonusLabel().setVisible(true);
-                    gui.getInitiativeBonusText().setVisible(true);
+                    gui.getInitiativeText().setVisible(true);
                     gui.getForceRollButton().setEnabled(true);
                 } else {
                     gui.getInitiativeBonusLabel().setVisible(false);
-                    gui.getInitiativeBonusText().setVisible(false);
+                    gui.getInitiativeText().setVisible(false);
                     gui.getForceRollButton().setEnabled(false);
                 }
             }
@@ -122,10 +122,8 @@ public class GooDM {
                 }
             }
             ops.updateJList();
-                // TODO: Somewhere else, I should do that
-                // the forceRollButton as well as the makeHisTurnButton
-                // is grey when the character written does
-                // not exist.
+                // TODO: makeHisTurnButton to be greyed out whenever 
+                // the name text thing changes
             }
         });
         gui.getSortListButton().addActionListener(new ActionListener(){
@@ -149,14 +147,31 @@ public class GooDM {
                 
             }
         });
+        gui.getAdd5IniButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                gui.getInitiativeBonusText().setText(Integer.toString(Integer.parseInt(gui.getInitiativeBonusText().getText()) + 5));
+            }
+        });
+        gui.getSubstract5IniButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                gui.getInitiativeBonusText().setText(Integer.toString(Integer.parseInt(gui.getInitiativeBonusText().getText()) - 5));
+                if (Integer.parseInt(gui.getInitiativeBonusText().getText()) < 0){
+                    gui.getInitiativeBonusText().setText("0");
+                }
+            }
+        });
         SelectOnFocus selectOnFocus = new SelectOnFocus();
         gui.getNameText().addFocusListener(selectOnFocus);
         gui.getPhysicalText().addFocusListener(selectOnFocus);
         gui.getStunText().addFocusListener(selectOnFocus);
-        gui.getInitiativeBonusText().addFocusListener(selectOnFocus);
         gui.getInitiativeText().addFocusListener(selectOnFocus);
+        gui.getInitiativeBonusText().addFocusListener(selectOnFocus);
         
-        // TODO: Add an 'Add/Substract Initiative' button which will roll the dice
+        // TODO: Next Turn Listener
+        
+        // PENDING: Add an 'Add/Substract Initiative' button which will roll the dice
         // you wrote and add it to the initiative of the selected character,
         // but will not modify its original initiative die. This will open
         // a new window with 2 text boxes, an add and a substract button. The first being
@@ -166,6 +181,5 @@ public class GooDM {
         // the die. For example, if you put 2 in the first textbox and 6 in the second,
         // then click substract, it will substract 2+6d6 from the initiative of the
         // selected character.
-        // TODO: Add +5 and -5 buttons for the initiative
     }
 }
