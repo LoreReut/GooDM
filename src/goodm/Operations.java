@@ -23,6 +23,7 @@ public class Operations {
     }
     
     void updateCharacterList(){
+        // TODO: If the character added is the first to be added, make it be his turn.
         boolean characterAlreadyExists = false;
         //Creates a character regardless if it exists or not, which will replace
         //another existing character in case the name is the same. Actual
@@ -123,14 +124,47 @@ public class Operations {
         else { return Integer.parseInt(textField.getText()); }
     }
     
-    void nextTurn(){
+    void nextInitiativePass(){
         // TODO: Add Next Turn functionality
         // Initiative is more complex than it sounds. It should be rolled
         // ONLY when it's the end of all turns and everyone is rolling, that way
         // the user can modify the initiative dice without modifying the actual
-        // initiative. 
+        // initiative.
+        Iterator<Character> iterator = gui.characters.iterator();
+        while(iterator.hasNext()){
+            Character thisCharacter = iterator.next();
+
+            if (thisCharacter.isHisTurn) {
+                if (iterator.hasNext()){
+                    thisCharacter.isHisTurn = false;
+                    iterator.next().isHisTurn = true;
+                } else if (!iterator.hasNext()) {
+                    thisCharacter.isHisTurn = false;
+                    Iterator<Character> redundantIterator = gui.characters.iterator();
+                    Character redundantCharacter = redundantIterator.next();
+                    redundantCharacter.isHisTurn = true;
+                    nextTurn();
+                }
+            }
+        }
+        updateJList();
     }
-    
+
+    void nextTurn(){
+        Iterator<Character> iterator = gui.characters.iterator();
+
+        while (iterator.hasNext()){
+            Character thisCharacter = iterator.next();
+            int thisInitiative = thisCharacter.getInitiative();
+
+            if (thisInitiative < 10){
+                thisCharacter.setInitiative(0);
+            } else {
+                thisCharacter.setInitiative(thisInitiative - 10);
+            }
+        }
+    }
+
     public void updateJList(){
         Iterator<Character> iterator = gui.characters.iterator();
         //gui.getCharacterJList().removeAll();

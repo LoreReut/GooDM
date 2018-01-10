@@ -88,6 +88,7 @@ public class GooDM {
         });
         gui.getMakeHisTurnButton().addActionListener(new ActionListener(){
             @Override public void actionPerformed(ActionEvent e){
+                // TODO: Turn this into a method so it's accessed by both nextInitiativePass and makeHisTurnButton, except the ops.updateJList(); part, which will be done by the mentioned methods.
                 Iterator<Character> iterator = gui.characters.iterator();
                 int index = 0;
                 while (iterator.hasNext()){
@@ -160,6 +161,12 @@ public class GooDM {
                 if (Integer.parseInt(gui.getInitiativeBonusText().getText()) < 0){
                     gui.getInitiativeBonusText().setText("0");
                 }
+            }
+        });
+        gui.getNextTurnButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                ops.nextInitiativePass();
             }
         });
         SelectOnFocus selectOnFocus = new SelectOnFocus();

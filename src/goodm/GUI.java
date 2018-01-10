@@ -94,7 +94,7 @@ public class GUI extends javax.swing.JFrame {
         rollRadioButton.setSelected(true);
         rollRadioButton.setText("Roll");
 
-        updateButton.setLabel("Add/Update");
+        updateButton.setText("Add/Update");
 
         characterJList.setMaximumSize(new java.awt.Dimension(215, 80));
         characterJList.setMinimumSize(new java.awt.Dimension(200, 80));
