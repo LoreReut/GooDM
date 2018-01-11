@@ -23,7 +23,6 @@ public class Operations {
     }
     
     void updateCharacterList(){
-        // TODO: If the character added is the first to be added, make it be his turn.
         boolean characterAlreadyExists = false;
         //Creates a character regardless if it exists or not, which will replace
         //another existing character in case the name is the same. Actual
@@ -58,6 +57,9 @@ public class Operations {
             
                 charToList.setInitiative(rollInitiative(charToList.initiativeDie, charToList.initiativeBonus));
                 
+            }
+            if (!gui.characters.iterator().hasNext()){
+                charToList.isHisTurn = true;
             }
             gui.characters.add(charToList); 
         }
