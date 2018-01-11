@@ -16,6 +16,8 @@ import java.util.List;
  *
  * @author HERMES
  */
+//TODO: Let a users save a group of characters and add/remove from that list whenever they want
+//TODO: Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks"
 public class GooDM {
     GUI gui = new GUI();
     Operations ops = new Operations(gui);
@@ -175,8 +177,6 @@ public class GooDM {
         gui.getStunText().addFocusListener(selectOnFocus);
         gui.getInitiativeText().addFocusListener(selectOnFocus);
         gui.getInitiativeBonusText().addFocusListener(selectOnFocus);
-        
-        // TODO: Next Turn Listener
         
         // PENDING: Add an 'Add/Substract Initiative' button which will roll the dice
         // you wrote and add it to the initiative of the selected character,

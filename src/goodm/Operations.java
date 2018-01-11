@@ -127,7 +127,6 @@ public class Operations {
     }
     
     void nextInitiativePass(){
-        // TODO: Add Next Turn functionality
         // Initiative is more complex than it sounds. It should be rolled
         // ONLY when it's the end of all turns and everyone is rolling, that way
         // the user can modify the initiative dice without modifying the actual

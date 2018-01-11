@@ -22,6 +22,7 @@ import javax.swing.ListModel;
  *
  * @author HERMES
  */
+//TODO: Add a delete button
 public class GUI extends javax.swing.JFrame {
     
     List<Character> characters = new ArrayList<Character>();
