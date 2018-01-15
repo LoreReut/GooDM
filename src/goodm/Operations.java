@@ -84,6 +84,7 @@ public class Operations {
     }
     
     void setCharacterOnScreen(Character charToScreen){
+        //TODO: The screen changes the initiative boxes visibility, but no the health ones.
         gui.getNameText().setText(charToScreen.getName());
         gui.getHealthRadioButton().setSelected(charToScreen.simplifiedHealth);
         gui.getRollRadioButton().setSelected(charToScreen.rollInitiative);
@@ -151,6 +152,9 @@ public class Operations {
         updateJList();
     }
 
+    /**
+     * Begins a new turn (that happens when all characters have 0 initiative and everything restarts).
+     */
     void nextTurn(){
         Iterator<Character> iterator = gui.characters.iterator();
 

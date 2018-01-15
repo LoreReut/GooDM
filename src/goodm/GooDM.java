@@ -16,8 +16,14 @@ import java.util.List;
  *
  * @author HERMES
  */
-//TODO: Let a users save a group of characters and add/remove from that list whenever they want
-//TODO: Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks"
+
+/**
+ * NPCs initiative can't be changed through the usual method, because I used some retarded trickery where
+ * initiative textBoxes switch purposes depending on whether it's NPC or PC.
+ * TODO: (VITAL) Fix initiative textBoxes for the NPCs.
+ */
+//TODO: (IMPORTANT)Let a users save a group of characters and add/remove from that list whenever they want.
+//TODO: Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks" (Check RL notes).
 public class GooDM {
     GUI gui = new GUI();
     Operations ops = new Operations(gui);
@@ -125,8 +131,6 @@ public class GooDM {
                 }
             }
             ops.updateJList();
-                // TODO: makeHisTurnButton to be greyed out whenever 
-                // the name text thing changes
             }
         });
         gui.getSortListButton().addActionListener(new ActionListener(){
