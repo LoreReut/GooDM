@@ -22,7 +22,9 @@ import javax.swing.ListModel;
  *
  * @author HERMES
  */
-//TODO: Add a delete button
+//TODO: (VITAL) Add a delete button.
+//TODO: (VITAL) Next Turn button should be called Next Pass.
+//TODO: (VITAL) Add a Clean List button.
 public class GUI extends javax.swing.JFrame {
     
     List<Character> characters = new ArrayList<Character>();

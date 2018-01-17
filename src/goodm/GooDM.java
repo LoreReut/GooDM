@@ -22,8 +22,8 @@ import java.util.List;
  * initiative textBoxes switch purposes depending on whether it's NPC or PC.
  * TODO: (VITAL) Fix initiative textBoxes for the NPCs.
  */
-//TODO: (IMPORTANT)Let a users save a group of characters and add/remove from that list whenever they want.
-//TODO: Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks" (Check RL notes).
+//TODO: (IMPORTANT FEATURE) Let a users save characters.
+//TODO: (COOL FEATURE) Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks" (Check RL notes).
 public class GooDM {
     GUI gui = new GUI();
     Operations ops = new Operations(gui);
@@ -96,7 +96,6 @@ public class GooDM {
         });
         gui.getMakeHisTurnButton().addActionListener(new ActionListener(){
             @Override public void actionPerformed(ActionEvent e){
-                // TODO: Turn this into a method so it's accessed by both nextInitiativePass and makeHisTurnButton, except the ops.updateJList(); part, which will be done by the mentioned methods.
                 Iterator<Character> iterator = gui.characters.iterator();
                 int index = 0;
                 while (iterator.hasNext()){

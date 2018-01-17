@@ -84,7 +84,6 @@ public class Operations {
     }
     
     void setCharacterOnScreen(Character charToScreen){
-        //TODO: The screen changes the initiative boxes visibility, but no the health ones.
         gui.getNameText().setText(charToScreen.getName());
         gui.getHealthRadioButton().setSelected(charToScreen.simplifiedHealth);
         gui.getRollRadioButton().setSelected(charToScreen.rollInitiative);
@@ -96,6 +95,15 @@ public class Operations {
             gui.getInitiativeBonusLabel().setVisible(false);
             gui.getInitiativeText().setVisible(false);
             gui.getForceRollButton().setEnabled(false);
+        }
+        if( gui.getHealthRadioButton().isSelected() ){
+            gui.getPhysicalLabel().setText("Health");
+            gui.getStunLabel().setVisible(false);
+            gui.getStunText().setVisible(false);
+        } else {
+            gui.getPhysicalLabel().setText("Physical");
+            gui.getStunLabel().setVisible(true);
+            gui.getStunText().setVisible(true);
         }
         gui.getPhysicalText().setText(Integer.toString(charToScreen.getPhysical()));
         gui.getStunText().setText(Integer.toString(charToScreen.getStun()));
@@ -157,16 +165,32 @@ public class Operations {
      */
     void nextTurn(){
         Iterator<Character> iterator = gui.characters.iterator();
+        int numberOfCharacters = 0;
+        int numberOfZeros = 0;
 
         while (iterator.hasNext()){
             Character thisCharacter = iterator.next();
             int thisInitiative = thisCharacter.getInitiative();
-
-            if (thisInitiative < 10){
+            numberOfCharacters += 1;
+            if (thisInitiative <= 10){
                 thisCharacter.setInitiative(0);
+                numberOfZeros += 1;
             } else {
                 thisCharacter.setInitiative(thisInitiative - 10);
             }
+        }
+        //Checks if everyone has 0 initiative, then rerolls the NPCs and asks for PC inis.
+        if (numberOfCharacters == numberOfZeros) {
+           iterator = gui.characters.iterator();
+           while (iterator.hasNext()){
+               Character thisCharacter = iterator.next();
+               if (thisCharacter.isRollInitiative()){
+                   thisCharacter.setInitiative(rollInitiative(thisCharacter.getInitiativeDie(),thisCharacter.getInitiativeBonus()));
+                   System.out.println("Rolling initaitive die for character = " + thisCharacter.getName());
+               } else if (!thisCharacter.isRollInitiative()){
+                   // TODO: (VITAL) Code a method that asks the user for each PC's Initiative. See RL notes.
+               }
+           }
         }
     }
 
