@@ -5,11 +5,12 @@
  */
 package goodm;
 
-import java.util.Collections;
-import java.util.Iterator;
-import javax.swing.DefaultListModel;
-import javax.swing.JTextField;
-import java.util.Random;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
+import javax.swing.*;
 
 /**
  *
@@ -69,6 +70,10 @@ public class Operations {
     
     void sortCharacterList(){
         Collections.sort(gui.characters);
+        Iterator<Character> iterator = gui.characters.iterator();
+        while (iterator.hasNext()) iterator.next().isHisTurn = false;
+        gui.characters.get(0).isHisTurn = true;
+        updateJList();
     }
     
     Character getCharacterOnScreen(){
@@ -182,15 +187,56 @@ public class Operations {
         //Checks if everyone has 0 initiative, then rerolls the NPCs and asks for PC inis.
         if (numberOfCharacters == numberOfZeros) {
            iterator = gui.characters.iterator();
+            // TODO: (VISUAL) Make the initiative window appear neatly after the main window.
+           JFrame initiativeWindow = new JFrame("Input Character Initiative");
+           initiativeWindow.setLayout(new BoxLayout(initiativeWindow.getContentPane(), BoxLayout.Y_AXIS));
+           initiativeWindow.setVisible(true);
+           List<JTextArea> textFieldList = new ArrayList<>();
+           int numberOfPCs = 0;
+
            while (iterator.hasNext()){
                Character thisCharacter = iterator.next();
                if (thisCharacter.isRollInitiative()){
                    thisCharacter.setInitiative(rollInitiative(thisCharacter.getInitiativeDie(),thisCharacter.getInitiativeBonus()));
                    System.out.println("Rolling initaitive die for character = " + thisCharacter.getName());
                } else if (!thisCharacter.isRollInitiative()){
-                   // TODO: (VITAL) Code a method that asks the user for each PC's Initiative. See RL notes.
+                   JTextArea tempTextArea = new JTextArea();
+                   JPanel row = new JPanel();
+
+                   row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
+                   textFieldList.add(numberOfPCs, tempTextArea);
+                   row.add(new JLabel(thisCharacter.getName()));
+                   row.add(tempTextArea);
+                   numberOfPCs++;
+                   initiativeWindow.add(row);
+                   initiativeWindow.pack();
+
                }
            }
+           //Create the SET INITIATIVE button of the window
+           JButton setInitiativeButton = new JButton("Set Initiative");
+           if (numberOfPCs > 0){
+
+
+               setInitiativeButton.addActionListener(new ActionListener(){
+                   @Override
+                   public void actionPerformed(ActionEvent e){
+                       Iterator<Character> iterator = gui.characters.iterator();
+                       int numberOfPCs = 0;
+                       while (iterator.hasNext()){
+                           Character thisCharacter = iterator.next();
+                           if (!thisCharacter.isRollInitiative()){
+                               thisCharacter.setInitiative(Integer.parseInt(textFieldList.get(numberOfPCs).getText()));
+                               numberOfPCs++;
+                           }
+                       }
+                       sortCharacterList();
+                       initiativeWindow.dispose();
+                   }
+               });
+           }
+           initiativeWindow.add(setInitiativeButton);
+           initiativeWindow.pack();
         }
     }
 
