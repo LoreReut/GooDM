@@ -43,11 +43,6 @@ public class Operations {
                 characterAlreadyExists = true;
                 // Check if the initiative is being modified, regardless of
                 // autoroll.
-                if( !charToList.rollInitiative ) { 
-                    charToList.setInitiative(charToList.initiativeDie);
-                } else {
-                    charToList.setInitiative(temp.getInitiative());
-                }
                 if( temp.isHisTurn ) { charToList.isHisTurn = true; }
                 gui.characters.set(gui.characters.lastIndexOf(temp), charToList);
             }
@@ -82,10 +77,11 @@ public class Operations {
         boolean rollInitiative = gui.getRollRadioButton().isSelected();
         int physical = getCuratedInt(gui.getPhysicalText());
         int stun = getCuratedInt(gui.getStunText());
-        int initiativeDie = getCuratedInt(gui.getInitiativeBonusText());
-        int initiativeBonus = getCuratedInt(gui.getInitiativeText());
+        int initiativeDie = getCuratedInt(gui.getNpcInitiativeText());
+        int initiativeBonus = getCuratedInt(gui.getInitiativeBonusText());
+        int initiative = getCuratedInt(gui.getPcInitiativeText());
 
-        return new Character(name, stun, physical, simplifiedHealth, rollInitiative, initiativeDie, initiativeBonus);
+        return new Character(name, stun, physical, simplifiedHealth, rollInitiative, initiativeDie, initiativeBonus, initiative);
     }
     
     void setCharacterOnScreen(Character charToScreen){
@@ -93,13 +89,23 @@ public class Operations {
         gui.getHealthRadioButton().setSelected(charToScreen.simplifiedHealth);
         gui.getRollRadioButton().setSelected(charToScreen.rollInitiative);
         if( gui.getRollRadioButton().isSelected() ){
+            gui.getNpcInitiativeText().setText(Integer.toString(charToScreen.getInitiativeDie()));
+            gui.getInitiativeBonusText().setText(Integer.toString(charToScreen.getInitiativeBonus()));
             gui.getInitiativeBonusLabel().setVisible(true);
-            gui.getInitiativeText().setVisible(true);
+            gui.getInitiativeBonusText().setVisible(true);
             gui.getForceRollButton().setEnabled(true);
+            gui.getPcInitiativeText().setVisible(true);
+            gui.getPcInitiativeText().setText(Integer.toString(charToScreen.getInitiative()));
+            gui.getEqualsLabel().setVisible(true);
+            gui.getNpcInitiativeText().setVisible(true);
         } else {
             gui.getInitiativeBonusLabel().setVisible(false);
-            gui.getInitiativeText().setVisible(false);
+            gui.getInitiativeBonusText().setVisible(false);
+            gui.getNpcInitiativeText().setVisible(false);
             gui.getForceRollButton().setEnabled(false);
+            gui.getPcInitiativeText().setText(Integer.toString(charToScreen.getInitiative()));
+            gui.getPcInitiativeText().setVisible(true);
+            gui.getEqualsLabel().setVisible(false);
         }
         if( gui.getHealthRadioButton().isSelected() ){
             gui.getPhysicalLabel().setText("Health");
@@ -112,8 +118,6 @@ public class Operations {
         }
         gui.getPhysicalText().setText(Integer.toString(charToScreen.getPhysical()));
         gui.getStunText().setText(Integer.toString(charToScreen.getStun()));
-        gui.getInitiativeBonusText().setText(Integer.toString(charToScreen.getInitiativeDie()));
-        gui.getInitiativeText().setText(Integer.toString(charToScreen.getInitiativeBonus()));
     }
     
     int rollInitiative(int initiativeDie, int initiativeBonus){

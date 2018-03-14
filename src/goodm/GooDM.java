@@ -17,11 +17,6 @@ import java.util.List;
  * @author HERMES
  */
 
-/**
- * NPCs initiative can't be changed through the usual method, because I used some retarded trickery where
- * initiative textBoxes switch purposes depending on whether it's NPC or PC.
- * TODO: (VITAL) Fix initiative textBoxes for the NPCs.
- */
 //TODO: (IMPORTANT FEATURE) Let a users save characters.
 //TODO: (COOL FEATURE) Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks" (Check RL notes).
 public class GooDM {
@@ -66,12 +61,18 @@ public class GooDM {
             public void actionPerformed(ActionEvent e){
                 if( gui.getRollRadioButton().isSelected() ){
                     gui.getInitiativeBonusLabel().setVisible(true);
-                    gui.getInitiativeText().setVisible(true);
+                    gui.getInitiativeBonusText().setVisible(true);
                     gui.getForceRollButton().setEnabled(true);
+                    gui.getPcInitiativeText().setVisible(true);
+                    gui.getEqualsLabel().setVisible(true);
+                    gui.getNpcInitiativeText().setVisible(true);
                 } else {
                     gui.getInitiativeBonusLabel().setVisible(false);
-                    gui.getInitiativeText().setVisible(false);
+                    gui.getInitiativeBonusText().setVisible(false);
+                    gui.getNpcInitiativeText().setVisible(false);
                     gui.getForceRollButton().setEnabled(false);
+                    gui.getPcInitiativeText().setVisible(true);
+                    gui.getEqualsLabel().setVisible(false);
                 }
             }
         });
@@ -156,15 +157,15 @@ public class GooDM {
         gui.getAdd5IniButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                gui.getInitiativeBonusText().setText(Integer.toString(Integer.parseInt(gui.getInitiativeBonusText().getText()) + 5));
+                gui.getPcInitiativeText().setText(Integer.toString(Integer.parseInt(gui.getPcInitiativeText().getText()) + 5));
             }
         });
         gui.getSubstract5IniButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                gui.getInitiativeBonusText().setText(Integer.toString(Integer.parseInt(gui.getInitiativeBonusText().getText()) - 5));
-                if (Integer.parseInt(gui.getInitiativeBonusText().getText()) < 0){
-                    gui.getInitiativeBonusText().setText("0");
+                gui.getPcInitiativeText().setText(Integer.toString(Integer.parseInt(gui.getPcInitiativeText().getText()) - 5));
+                if (Integer.parseInt(gui.getPcInitiativeText().getText()) < 0){
+                    gui.getPcInitiativeText().setText("0");
                 }
             }
         });
@@ -178,8 +179,9 @@ public class GooDM {
         gui.getNameText().addFocusListener(selectOnFocus);
         gui.getPhysicalText().addFocusListener(selectOnFocus);
         gui.getStunText().addFocusListener(selectOnFocus);
-        gui.getInitiativeText().addFocusListener(selectOnFocus);
         gui.getInitiativeBonusText().addFocusListener(selectOnFocus);
+        gui.getPcInitiativeText().addFocusListener(selectOnFocus);
+        gui.getNpcInitiativeText().addFocusListener(selectOnFocus);
         
         // PENDING: Add an 'Add/Substract Initiative' button which will roll the dice
         // you wrote and add it to the initiative of the selected character,

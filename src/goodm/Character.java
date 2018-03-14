@@ -17,11 +17,11 @@ public class Character implements Comparable<Character>{
     // rolled yet.
     int initiative;
     
-    public Character(String name, int stun, int physical, boolean simplifiedHealth, boolean rollInitiative, int initiativeDie, int initiativeBonus){
-        this.name = name; this.stun = stun; this.physical = physical; 
-        this.initiativeDie = initiativeDie; this.initiativeBonus = initiativeBonus;
+    public Character(String name, int stun, int physical, boolean simplifiedHealth, boolean rollInitiative, int initiativeDie, int initiativeBonus, int initiative){
+        this.name = name; this.stun = stun; this.physical = physical;
         this.simplifiedHealth = simplifiedHealth; this.rollInitiative = rollInitiative;
-        if( !rollInitiative ) { this.initiative = initiativeDie; }
+        this.initiativeDie = initiativeDie; this.initiativeBonus = initiativeBonus; this.initiative = initiative;
+        if( !rollInitiative ) { this.initiative = initiative; }
     }
     @Override
     public int compareTo(Character charToCompare){
