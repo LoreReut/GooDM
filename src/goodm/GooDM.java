@@ -11,6 +11,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -92,7 +93,7 @@ public class GooDM {
         });
         gui.getUpdateButton().addActionListener(new ActionListener(){
             @Override public void actionPerformed(ActionEvent e){
-                ops.updateCharacterList();
+                ops.addUpdateCharacters();
             }
         });
         gui.getMakeHisTurnButton().addActionListener(new ActionListener(){
@@ -173,6 +174,59 @@ public class GooDM {
             @Override
             public void actionPerformed(ActionEvent e){
                 ops.nextInitiativePass();
+            }
+        });
+        gui.getDeleteButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                Character charOnScreen = ops.getCharacterOnScreen();
+                Iterator<Character> iterator = gui.characters.iterator();
+                while ( iterator.hasNext() ){
+                    Character temp = iterator.next();
+                    if( temp.getName().equals(charOnScreen.name) ) { 
+                    iterator.remove();
+                    }
+                }
+                ops.updateJList();
+            }
+        });
+        gui.getRollDieButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String resultingString = "";
+                int greens = 0, reds = 0, die = 0;
+                //TODO: This one automatically rolls 10 die, but it should be the
+                //number shown in the scrollthingie
+                for (int i = 0;i<10;i++){
+                    resultingString = resultingString + "<html>";
+                    int thisRoll = ops.rollADice();
+                    if (thisRoll > 4){
+                        resultingString = resultingString + " <font color='green'>" + thisRoll + "</font>";
+                        greens++;
+                        die++;
+                    } else if (thisRoll < 2) {
+                        resultingString = resultingString + " <font color='red'>" + thisRoll + "</font>";
+                        reds++;
+                        die++;
+                    } else {
+                        resultingString = resultingString + " " + thisRoll;
+                        die ++;
+                    }
+                }
+                resultingString = resultingString + " - <b>" + greens + "</b> hits.";
+                if (reds > (die/2)){
+                    resultingString = resultingString + " -<font color='red'><b>";
+                    if (greens == 0){
+                        resultingString = resultingString + " CRITICAL GLITCH!";
+                    } else {
+                        resultingString = resultingString + " GLITCH";
+                    }
+                }
+                resultingString = resultingString + "</html>";
+                DefaultListModel<String> model = gui.dieJListModel;
+                model.addElement(resultingString);
+                gui.getDieJList().setModel(model);
+                gui.getDieJList().ensureIndexIsVisible(gui.getDieJList().getModel().getSize()-1);
             }
         });
         SelectOnFocus selectOnFocus = new SelectOnFocus();

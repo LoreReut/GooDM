@@ -23,7 +23,7 @@ public class Operations {
         this.gui = gui;
     }
     
-    void updateCharacterList(){
+    void addUpdateCharacters(){
         boolean characterAlreadyExists = false;
         //Creates a character regardless if it exists or not, which will replace
         //another existing character in case the name is the same. Actual
@@ -41,9 +41,9 @@ public class Operations {
             // its initiative with the new one
             if( temp.getName().equals(charToList.name) ) { 
                 characterAlreadyExists = true;
-                // Check if the initiative is being modified, regardless of
-                // autoroll.
-                if( temp.isHisTurn ) { charToList.isHisTurn = true; }
+                // When you get the Character from screen, the program doesn't
+                // really know if it's his turn or not, so...
+                charToList.isHisTurn = temp.isHisTurn;
                 gui.characters.set(gui.characters.lastIndexOf(temp), charToList);
             }
         }
@@ -265,5 +265,9 @@ public class Operations {
             model.addElement(tempString);
         }
         gui.getCharacterJList().setModel(model);
+    }
+    
+    public int rollADice(){
+        return (int) (Math.random()*6) + 1;
     }
 }
