@@ -11,7 +11,7 @@ package goodm;
  */
 public class Character implements Comparable<Character>{
     String name;
-    int stun, physical, initiativeDie, initiativeBonus;
+    int stun, physical, initiativeDie, initiativeBonus, maxPhysical, maxStun;
     boolean simplifiedHealth, rollInitiative, isHisTurn;
     // Must be 0 in case a Character is created but hasn't had his initiative
     // rolled yet.
@@ -93,5 +93,11 @@ public class Character implements Comparable<Character>{
     }
     public void setPhysical(int physical) {
         this.physical = physical;
+    }
+    int getMaxStun(){
+        return maxStun;
+    }
+    int getMaxPhysical(){
+        return maxPhysical;
     }
 }

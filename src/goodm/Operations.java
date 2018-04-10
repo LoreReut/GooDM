@@ -8,10 +8,18 @@ package goodm;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
-
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
+import org.xml.sax.*;
+import org.w3c.dom.*;
 /**
  *
  * @author HERMES
@@ -44,19 +52,26 @@ public class Operations {
                 // When you get the Character from screen, the program doesn't
                 // really know if it's his turn or not, so...
                 charToList.isHisTurn = temp.isHisTurn;
+                charToList.maxPhysical = temp.maxPhysical;
+                charToList.maxStun = temp.maxStun;
                 gui.characters.set(gui.characters.lastIndexOf(temp), charToList);
             }
         }
         
         if( !characterAlreadyExists ) {
             if ( charToList.rollInitiative ) {
-            
-                charToList.setInitiative(rollInitiative(charToList.initiativeDie, charToList.initiativeBonus));
-                
+                charToList.setInitiative(rollInitiative(charToList.initiativeDie, charToList.initiativeBonus));   
+            }
+            if (charToList.simplifiedHealth){
+                charToList.maxPhysical = charToList.physical;
+            } else {
+                charToList.maxPhysical = charToList.physical;
+                charToList.maxStun =charToList.stun;
             }
             if (!gui.characters.iterator().hasNext()){
                 charToList.isHisTurn = true;
             }
+            
             gui.characters.add(charToList); 
         }
                 
@@ -251,16 +266,21 @@ public class Operations {
         while (iterator.hasNext()){
             Character temp = iterator.next();
             String tempString = "<html>";
-            
+            String physicalString = String.format("%02d", temp.getPhysical());
+            String stunString = String.format("%02d", temp.getStun());
+            String maxPhysicalString = String.format("%02d", temp.getMaxPhysical());
+            String maxStunString = String.format("%02d", temp.getMaxStun());
+            String initiativeString = String.format("%02d", temp.getInitiative());
             if ( temp.isHisTurn ) {tempString += ">> ";}
-            tempString += "<b>" + temp.getName() + "</b> ";
+            tempString += initiativeString + " - ";
+            tempString += "<b>" + temp.getName() + "</b> - ";
             if ( temp.simplifiedHealth ) {
-                tempString += "Health: " + temp.getPhysical() + " ";
+                tempString += "Condition Monitor: " + physicalString + "/" + maxPhysicalString + " ";
             } else {
-                tempString += "Ph: " + temp.getPhysical() + " " +
-                                "St: "+temp.getStun() + " ";
+                tempString += "Condition Monitor: P " + physicalString + "/" + maxPhysicalString + " " +
+                                "S "+ stunString + "/" + maxStunString + "</html>";
             }
-            tempString += "In: <b>" + temp.getInitiative() + "</b></html>";
+            
             
             model.addElement(tempString);
         }
@@ -269,5 +289,96 @@ public class Operations {
     
     public int rollADice(){
         return (int) (Math.random()*6) + 1;
+    }
+    
+    public void saveToXML(Character character){ 
+        // The file is saved on the folder above the program folder
+        String fileName = "Characters/" + character.getName();
+        // This will be used to hold each xml element
+        Element element = null;
+        
+        try {
+            DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document dom = docBuilder.newDocument();
+            Element rootElement = dom.createElement("Character");
+            
+            element = dom.createElement("Name");
+            element.appendChild(dom.createTextNode(character.getName()));
+                rootElement.appendChild(element);
+            element = dom.createElement("isHealthSimplified");
+            element.appendChild(dom.createTextNode(Boolean.toString(character.isSimplifiedHealth())));
+                rootElement.appendChild(element);
+            element = dom.createElement("isAutorollEnabled");
+            element.appendChild(dom.createTextNode(Boolean.toString(character.isRollInitiative())));
+                rootElement.appendChild(element);
+            element = dom.createElement("initiativeDie");
+            element.appendChild(dom.createTextNode(character.getInitiativeDie()+""));
+                rootElement.appendChild(element);
+            element = dom.createElement("initiativeBonus");
+            element.appendChild(dom.createTextNode(character.getInitiativeBonus()+""));
+                rootElement.appendChild(element);
+            element = dom.createElement("physicalOrSimplifiedHealth");
+            element.appendChild(dom.createTextNode(character.getPhysical()+""));
+                rootElement.appendChild(element);
+            element = dom.createElement("stunHealth");
+            element.appendChild(dom.createTextNode(character.getStun()+""));
+                rootElement.appendChild(element);
+            dom.appendChild(rootElement);
+                
+            try {
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                transformer.setOutputProperty(OutputKeys.INDENT,    "yes");
+                transformer.setOutputProperty(OutputKeys.METHOD,    "xml");
+                transformer.setOutputProperty(OutputKeys.ENCODING,  "UTF-8");
+                transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "characters.dtd");
+                transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+                
+                transformer.transform(new DOMSource(dom), new StreamResult(new FileOutputStream(fileName)));
+            } catch (TransformerException te){
+                System.out.println(te);
+            } catch (FileNotFoundException fnfe){
+                System.out.println(fnfe);
+            }
+        } catch (ParserConfigurationException pos){
+            System.out.println(pos);
+        }
+    }
+    
+    public Character loadFromXML(String fileName){
+        Character result = null;
+        try {
+            Document dom = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("Characters/" + fileName);
+            Element doc = dom.getDocumentElement();
+            String name = getTextValueXML(doc, "Name");
+            String isHealthSimplified = getTextValueXML(doc, "isHealthSimplified");
+            String isAutorollEnabled = getTextValueXML(doc, "isAutorollEnabled");
+            String initiativeDie = getTextValueXML(doc, "initiativeDie");
+            String physicalOrSimplifiedHealth = getTextValueXML(doc, "physicalOrSimplifiedHealth");
+            String stunHealth = getTextValueXML(doc, "physicalOrSimplifiedHealth");
+            String initiativeBonus = getTextValueXML(doc, "initiativeBonus");
+            
+            result = new Character(name, Integer.valueOf(stunHealth), Integer.valueOf(physicalOrSimplifiedHealth), Boolean.valueOf(isHealthSimplified), Boolean.valueOf(isAutorollEnabled), Integer.valueOf(initiativeDie), Integer.valueOf(initiativeBonus), 0);
+        } catch (SAXException se){
+            System.out.println(se);
+        } catch (ParserConfigurationException poe){
+            System.out.println(poe);
+        } catch (IOException ioe){
+            System.out.println(ioe);
+        }
+        
+        return result;
+    }
+    
+    private String getTextValueXML(Element doc, String tag){
+        String result = "";
+        NodeList nodeList;
+        nodeList = doc.getElementsByTagName(tag);
+        
+        // Check that there's actually something in it and let's go
+        if (nodeList.getLength() > 0 && nodeList.item(0).hasChildNodes()){
+            result = nodeList.item(0).getFirstChild().getNodeValue();
+        }
+        
+        return result;
     }
 }

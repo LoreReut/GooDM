@@ -29,9 +29,25 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="505" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="nextTurnButton" min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="sortListButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="505" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="rollDieSpinner" min="-2" pref="54" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="rollDieButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
@@ -76,42 +92,33 @@
                                           <Component id="add5IniButton" min="-2" pref="23" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                      <Component id="saveCharacterButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="updateButton" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="makeHisTurnButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="forceRollButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="updateButton" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                              <Component id="makeHisTurnButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="loadCharacterButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="characterToLoadText" min="-2" pref="98" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="forceRollButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="152" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="nextTurnButton" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="sortListButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jScrollPane1" alignment="0" min="-2" pref="505" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jSpinner1" min="-2" pref="54" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="rollDieButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -127,7 +134,10 @@
                       <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                       <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="nameText" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="saveCharacterButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -135,48 +145,57 @@
                   <Component id="physicalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="physicalText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stunLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="stunText" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="stunText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="characterToLoadText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="rollRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="initiativeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="npcInitiativeText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="initiativeBonusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="initiativeBonusText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="pcInitiativeText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="equalsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="rollRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="initiativeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="npcInitiativeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="initiativeBonusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="initiativeBonusText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="pcInitiativeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="equalsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="substract5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                              <Component id="add5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="updateButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="makeHisTurnButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="forceRollButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="nextTurnButton" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="sortListButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="rollDieButton" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="rollDieSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="substract5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-                      <Component id="add5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="loadCharacterButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="updateButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="makeHisTurnButton" min="-2" max="-2" attributes="0"/>
-                  <Component id="forceRollButton" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="nextTurnButton" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="sortListButton" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="67" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="rollDieButton" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -342,11 +361,20 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Roll Die"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rollDieButtonActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="rollDieSpinner">
+    </Component>
+    <Component class="javax.swing.JButton" name="saveCharacterButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Save Character"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="loadCharacterButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Load Character"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="characterToLoadText">
     </Component>
   </SubComponents>
 </Form>
