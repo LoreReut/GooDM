@@ -68,8 +68,8 @@ public class GUI extends javax.swing.JFrame {
         makeHisTurnButton = new javax.swing.JButton();
         forceRollButton = new javax.swing.JButton();
         sortListButton = new javax.swing.JButton();
-        add5IniButton = new javax.swing.JButton();
         substract5IniButton = new javax.swing.JButton();
+        add5IniButton = new javax.swing.JButton();
         pcInitiativeText = new javax.swing.JTextField();
         equalsLabel = new javax.swing.JLabel();
         deleteButton = new javax.swing.JButton();
@@ -125,7 +125,7 @@ public class GUI extends javax.swing.JFrame {
         sortListButton.setText("Sort List");
         sortListButton.setActionCommand("sortListButton");
 
-        add5IniButton.setName(""); // NOI18N
+        substract5IniButton.setName(""); // NOI18N
 
         pcInitiativeText.setText("0");
 
@@ -198,8 +198,8 @@ public class GUI extends javax.swing.JFrame {
                                         .addComponent(pcInitiativeText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(substract5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(add5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(add5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(substract5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(70, 70, 70)
                                         .addComponent(saveCharacterButton))))
@@ -251,10 +251,10 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(initiativeBonusText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(pcInitiativeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(equalsLabel))
-                            .addComponent(substract5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(add5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(add5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(substract5IniButton, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -509,11 +509,11 @@ public class GUI extends javax.swing.JFrame {
     }
     
     JButton getAdd5IniButton() {
-        return add5IniButton;
+        return substract5IniButton;
     }
     
     JButton getSubstract5IniButton() {
-        return substract5IniButton;
+        return add5IniButton;
     }
     
     JButton getLoadCharacterButton(){

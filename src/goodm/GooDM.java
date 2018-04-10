@@ -18,8 +18,8 @@ import javax.swing.DefaultListModel;
  * @author HERMES
  */
 //TODO: (IMPORTANT FEATURE!) When a character is selected to be edited, one should be able to edit its maxHealth
-//TODO: (IMPORTANT FEATURE) Create a list that will show the characters saved
-//TODO: (IMPORTANT FEATURE) Create those 30 million buttons Kona wants
+//TODO: (COOL FEATURE!!) Create a list that will show the characters saved
+//TODO: (COOL FEATURE!!) Create those 30 million buttons Kona wants
 //TODO: (COOL FEATURE) Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks" (Check RL notes).
 //TODO: (COOL FEATURE) When clicking add/update, the updated character should be reprinted on screen (in case he just got created and has rolls its initiative, for example)
 public class GooDM {
@@ -157,13 +157,13 @@ public class GooDM {
                 
             }
         });
-        gui.getAdd5IniButton().addActionListener(new ActionListener(){
+        gui.getSubstract5IniButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 gui.getPcInitiativeText().setText(Integer.toString(Integer.parseInt(gui.getPcInitiativeText().getText()) + 5));
             }
         });
-        gui.getSubstract5IniButton().addActionListener(new ActionListener(){
+        gui.getAdd5IniButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 gui.getPcInitiativeText().setText(Integer.toString(Integer.parseInt(gui.getPcInitiativeText().getText()) - 5));

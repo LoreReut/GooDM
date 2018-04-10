@@ -88,8 +88,8 @@
                                       <Component id="pcInitiativeText" min="-2" pref="32" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="substract5IniButton" min="-2" pref="23" max="-2" attributes="0"/>
                                           <Component id="add5IniButton" min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Component id="substract5IniButton" min="-2" pref="23" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -161,10 +161,10 @@
                               <Component id="pcInitiativeText" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="equalsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="substract5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="add5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-                              <Component id="add5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="substract5IniButton" min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -335,12 +335,12 @@
         <Property name="actionCommand" type="java.lang.String" value="sortListButton"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="add5IniButton">
+    <Component class="javax.swing.JButton" name="substract5IniButton">
       <Properties>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="substract5IniButton">
+    <Component class="javax.swing.JButton" name="add5IniButton">
     </Component>
     <Component class="javax.swing.JTextField" name="pcInitiativeText">
       <Properties>
