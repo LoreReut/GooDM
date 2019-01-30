@@ -11,16 +11,17 @@ package goodm;
  */
 public class Character implements Comparable<Character>{
     String name;
-    int stun, physical, initiativeDie, initiativeBonus, maxPhysical, maxStun;
+    int stun, physical, initiativeDie, initiativeBonus, maxPhysical, maxStun, perception;
     boolean simplifiedHealth, rollInitiative, isHisTurn;
     // Must be 0 in case a Character is created but hasn't had his initiative
     // rolled yet.
     int initiative;
     
-    public Character(String name, int stun, int physical, boolean simplifiedHealth, boolean rollInitiative, int initiativeDie, int initiativeBonus, int initiative){
+    public Character(String name, int stun, int physical, boolean simplifiedHealth, boolean rollInitiative, int initiativeDie, int initiativeBonus, int initiative, int perception){
         this.name = name; this.stun = stun; this.physical = physical;
         this.simplifiedHealth = simplifiedHealth; this.rollInitiative = rollInitiative;
         this.initiativeDie = initiativeDie; this.initiativeBonus = initiativeBonus; this.initiative = initiative;
+        this.perception = perception;
         if( !rollInitiative ) { this.initiative = initiative; }
     }
     @Override
@@ -99,5 +100,8 @@ public class Character implements Comparable<Character>{
     }
     int getMaxPhysical(){
         return maxPhysical;
+    }
+    int getPerception(){
+        return perception;
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Character SYSTEM "characters.dtd">
+<Character>
+    <Name>NPC2</Name>
+    <isHealthSimplified>true</isHealthSimplified>
+    <isAutorollEnabled>true</isAutorollEnabled>
+    <initiativeDie>5</initiativeDie>
+    <initiativeBonus>10</initiativeBonus>
+    <physicalOrSimplifiedHealth>22</physicalOrSimplifiedHealth>
+    <stunHealth>0</stunHealth>
+    <perception>6</perception>
+</Character>

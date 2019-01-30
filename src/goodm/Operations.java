@@ -8,6 +8,7 @@ package goodm;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,6 +55,7 @@ public class Operations {
                 charToList.isHisTurn = temp.isHisTurn;
                 charToList.maxPhysical = temp.maxPhysical;
                 charToList.maxStun = temp.maxStun;
+                charToList.perception = temp.perception;
                 gui.characters.set(gui.characters.lastIndexOf(temp), charToList);
             }
         }
@@ -95,8 +97,9 @@ public class Operations {
         int initiativeDie = getCuratedInt(gui.getNpcInitiativeText());
         int initiativeBonus = getCuratedInt(gui.getInitiativeBonusText());
         int initiative = getCuratedInt(gui.getPcInitiativeText());
+        int perception = getCuratedInt(gui.getPerceptionText());
 
-        return new Character(name, stun, physical, simplifiedHealth, rollInitiative, initiativeDie, initiativeBonus, initiative);
+        return new Character(name, stun, physical, simplifiedHealth, rollInitiative, initiativeDie, initiativeBonus, initiative, perception);
     }
     
     void setCharacterOnScreen(Character charToScreen){
@@ -133,6 +136,7 @@ public class Operations {
         }
         gui.getPhysicalText().setText(Integer.toString(charToScreen.getPhysical()));
         gui.getStunText().setText(Integer.toString(charToScreen.getStun()));
+        gui.getPerceptionText().setText(Integer.toString(charToScreen.getPerception()));
     }
     
     int rollInitiative(int initiativeDie, int initiativeBonus){
@@ -323,6 +327,9 @@ public class Operations {
             element = dom.createElement("stunHealth");
             element.appendChild(dom.createTextNode(character.getStun()+""));
                 rootElement.appendChild(element);
+            element = dom.createElement("perception");
+            element.appendChild(dom.createTextNode(character.getPerception()+""));
+                rootElement.appendChild(element);
             dom.appendChild(rootElement);
                 
             try {
@@ -354,10 +361,11 @@ public class Operations {
             String isAutorollEnabled = getTextValueXML(doc, "isAutorollEnabled");
             String initiativeDie = getTextValueXML(doc, "initiativeDie");
             String physicalOrSimplifiedHealth = getTextValueXML(doc, "physicalOrSimplifiedHealth");
-            String stunHealth = getTextValueXML(doc, "physicalOrSimplifiedHealth");
+            String stunHealth = getTextValueXML(doc, "stunHealth");
             String initiativeBonus = getTextValueXML(doc, "initiativeBonus");
+            String perception = getTextValueXML(doc, "perception");
             
-            result = new Character(name, Integer.valueOf(stunHealth), Integer.valueOf(physicalOrSimplifiedHealth), Boolean.valueOf(isHealthSimplified), Boolean.valueOf(isAutorollEnabled), Integer.valueOf(initiativeDie), Integer.valueOf(initiativeBonus), 0);
+            result = new Character(name, Integer.valueOf(stunHealth), Integer.valueOf(physicalOrSimplifiedHealth), Boolean.valueOf(isHealthSimplified), Boolean.valueOf(isAutorollEnabled), Integer.valueOf(initiativeDie), Integer.valueOf(initiativeBonus), 0, Integer.valueOf(perception));
         } catch (SAXException se){
             System.out.println(se);
         } catch (ParserConfigurationException poe){
@@ -380,5 +388,23 @@ public class Operations {
         }
         
         return result;
+    }
+    
+    void loadLoadableCharacters(){
+        JList loadablesJList = gui.getLoadableCharactersList();
+        File loadablesFile = new File("Characters/");
+        File[] loadablesList = loadablesFile.listFiles();
+        DefaultListModel<String> model = new DefaultListModel();
+        String tempString, currentName;
+        
+        for (int i = 0; i < loadablesList.length;i++){
+            currentName = loadablesList[i].getName();
+            
+            if (!currentName.equals("characters.dtd")){
+                model.addElement(currentName);
+            }
+        }
+            
+        gui.getLoadableCharactersList().setModel(model);
     }
 }

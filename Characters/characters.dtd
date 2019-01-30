@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Character (Name,isHealthSimplified,isAutorollEnabled,initiativeDie,initiativeBonus,physicalOrSimplifiedHealth,stunHealth)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT isHealthSimplified (#PCDATA)>
+<!ELEMENT isAutorollEnabled (#PCDATA)>
+<!ELEMENT initiativeDie (#PCDATA)>
+<!ELEMENT initiativeBonus (#PCDATA)>
+<!ELEMENT physicalOrSimplifiedHealth (#PCDATA)>
+<!ELEMENT stunHealth (#PCDATA)>

@@ -17,11 +17,20 @@ import javax.swing.DefaultListModel;
  *
  * @author HERMES
  */
-//TODO: (IMPORTANT FEATURE!) When a character is selected to be edited, one should be able to edit its maxHealth
-//TODO: (COOL FEATURE!!) Create a list that will show the characters saved
-//TODO: (COOL FEATURE!!) Create those 30 million buttons Kona wants
-//TODO: (COOL FEATURE) Add a window, which will be attached to the main window, where you can roll skill checks of single or a group of units (for example a sneak check against the threshold of a boss). You can also save these groups of dicepools (for example, "party's perception checks" (Check RL notes).
-//TODO: (COOL FEATURE) When clicking add/update, the updated character should be reprinted on screen (in case he just got created and has rolls its initiative, for example)
+/**
+ * TODO: (COOL FEATURE) Add ability to load multiple characters at once
+ * TODO: (COOL FEATURE) Make items adapt to resizing
+ * TODO: In the set initiative window that pops up at the end of a turn, set the button as default button
+ * TODO: (COOL FEATURE!!) Create those 30 million buttons Kona wants
+ * TODO: (COOL FEATURE!!) Make the input initiative window to be always on top and on a good position so users don't accidentally hide it
+ * TODO: (COOL FEATURE) Add a refresh button for loadableCharactersJList
+ * TODO: (COOL FEATURE) When clicking add/update, the updated character should be reprinted on screen (in case he just got created and has rolls its initiative, for example)
+**/
+/**
+ * TODO: Add a listener to the Roll Mass Perception button. This button will open a window which will contain this: https://gyazo.com/98ec68909c92a3fd4e21026d2d607178
+ * Make the roll button the default of the frame. Also as soon as the frame loads, put the focus on the character groups spinner thing.
+ */
+
 public class GooDM {
     GUI gui = new GUI();
     Operations ops = new Operations(gui);
@@ -55,10 +64,13 @@ public class GooDM {
         GooDM main = new GooDM();
         main.gui.setVisible(true);
         main.setActionListeners();
+        main.ops.loadLoadableCharacters();
     }
     private void setActionListeners(){
         // Roll Radio Button: Will show "d6 + [TextField]" in case the user
         // chooses to have the initiative automatically rolled instead of manual.
+        gui.getRootPane().setDefaultButton(gui.getUpdateButton());
+        gui.getJFrame().pack();
         gui.getRollRadioButton().addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
@@ -197,8 +209,7 @@ public class GooDM {
             public void actionPerformed(ActionEvent e){
                 String resultingString = "";
                 int greens = 0, reds = 0, die = 0;
-                //TODO: This one automatically rolls 10 die, but it should be the
-                //number shown in the scrollthingie
+                //TODO: Make it show critical glitches
                 for (int i = 0;i<(Integer) gui.getRollDieSpinner().getValue();i++){
                     resultingString = resultingString + "<html>";
                     int thisRoll = ops.rollADice();
@@ -216,7 +227,7 @@ public class GooDM {
                     }
                 }
                 resultingString = resultingString + " - <b>" + greens + "</b> hits.";
-                if (reds > (die/2)){
+                if (reds >= (die/2)){
                     resultingString = resultingString + " -<font color='red'><b>";
                     if (greens == 0){
                         resultingString = resultingString + " CRITICAL GLITCH!";
@@ -238,7 +249,7 @@ public class GooDM {
         });
         gui.getLoadCharacterButton().addActionListener(new ActionListener(){
             @Override public void actionPerformed(ActionEvent e){
-                ops.setCharacterOnScreen(ops.loadFromXML(gui.getCharacterToLoadText().getText()));
+                ops.setCharacterOnScreen(ops.loadFromXML(gui.getLoadableCharactersList().getModel().getElementAt(gui.getLoadableCharactersList().getSelectedIndex()).toString()));
             }
         });
         SelectOnFocus selectOnFocus = new SelectOnFocus();

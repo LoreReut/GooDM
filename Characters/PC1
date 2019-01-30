@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Character SYSTEM "characters.dtd">
+<Character>
+    <Name>PC1</Name>
+    <isHealthSimplified>false</isHealthSimplified>
+    <isAutorollEnabled>false</isAutorollEnabled>
+    <initiativeDie>1</initiativeDie>
+    <initiativeBonus>5</initiativeBonus>
+    <physicalOrSimplifiedHealth>20</physicalOrSimplifiedHealth>
+    <stunHealth>22</stunHealth>
+    <perception>0</perception>
+</Character>
