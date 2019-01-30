@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -214,7 +215,7 @@ public class Operations {
            JFrame initiativeWindow = new JFrame("Input Character Initiative");
            initiativeWindow.setLayout(new BoxLayout(initiativeWindow.getContentPane(), BoxLayout.Y_AXIS));
            initiativeWindow.setVisible(true);
-           List<JTextArea> textFieldList = new ArrayList<>();
+           List<JTextField> textFieldList = new ArrayList<>();
            int numberOfPCs = 0;
 
            while (iterator.hasNext()){
@@ -223,7 +224,7 @@ public class Operations {
                    thisCharacter.setInitiative(rollInitiative(thisCharacter.getInitiativeDie(),thisCharacter.getInitiativeBonus()));
                    System.out.println("Rolling initaitive die for character = " + thisCharacter.getName());
                } else if (!thisCharacter.isRollInitiative()){
-                   JTextArea tempTextArea = new JTextArea();
+                   JTextField tempTextArea = new JTextField();
                    JPanel row = new JPanel();
 
                    row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
@@ -238,6 +239,7 @@ public class Operations {
            }
            //Create the SET INITIATIVE button of the window
            JButton setInitiativeButton = new JButton("Set Initiative");
+           initiativeWindow.getRootPane().setDefaultButton(setInitiativeButton);
            if (numberOfPCs > 0){
 
 
@@ -406,5 +408,17 @@ public class Operations {
         }
             
         gui.getLoadableCharactersList().setModel(model);
+    }
+    
+    void saveCharacterGroup(String[] characterNames, String fileName){
+        try {
+        FileWriter fw = new FileWriter("Characters/Character_Groups/" + fileName);
+        
+        for (int i = 0;i < characterNames.length;i++){
+            fw.write(characterNames[i] + "\n");
+        }
+        } catch (IOException e){
+            System.out.println(e);
+        }
     }
 }

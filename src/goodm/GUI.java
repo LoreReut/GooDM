@@ -38,7 +38,6 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         stunLabel.setVisible(false);
         stunText.setVisible(false);
-        npcInitiativeText.setHorizontalAlignment(JTextField.CENTER);
     }
 
     /**

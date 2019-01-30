@@ -20,7 +20,6 @@ import javax.swing.DefaultListModel;
 /**
  * TODO: (COOL FEATURE) Add ability to load multiple characters at once
  * TODO: (COOL FEATURE) Make items adapt to resizing
- * TODO: In the set initiative window that pops up at the end of a turn, set the button as default button
  * TODO: (COOL FEATURE!!) Create those 30 million buttons Kona wants
  * TODO: (COOL FEATURE!!) Make the input initiative window to be always on top and on a good position so users don't accidentally hide it
  * TODO: (COOL FEATURE) Add a refresh button for loadableCharactersJList
@@ -29,6 +28,7 @@ import javax.swing.DefaultListModel;
 /**
  * TODO: Add a listener to the Roll Mass Perception button. This button will open a window which will contain this: https://gyazo.com/98ec68909c92a3fd4e21026d2d607178
  * Make the roll button the default of the frame. Also as soon as the frame loads, put the focus on the character groups spinner thing.
+ * Already made saveCharacterGroup function.
  */
 
 public class GooDM {

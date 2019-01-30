@@ -4,8 +4,8 @@
     <Name>PC1</Name>
     <isHealthSimplified>false</isHealthSimplified>
     <isAutorollEnabled>false</isAutorollEnabled>
-    <initiativeDie>1</initiativeDie>
-    <initiativeBonus>5</initiativeBonus>
+    <initiativeDie>0</initiativeDie>
+    <initiativeBonus>0</initiativeBonus>
     <physicalOrSimplifiedHealth>20</physicalOrSimplifiedHealth>
     <stunHealth>22</stunHealth>
     <perception>0</perception>
